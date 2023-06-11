@@ -1,26 +1,38 @@
+import java.io.*;
+
 public class Main {
-    public static void main(String[] args) {
-        TowersOfHanoi source = new TowersOfHanoi();
-        source
-                .add_slide(8)
-                .add_slide(7)
-                .add_slide(6)
-                .add_slide(5)
-                .add_slide(4)
-                .add_slide(3)
-                .add_slide(2)
-                .add_slide(1);
-        TowersOfHanoi aux = new TowersOfHanoi();
-        TowersOfHanoi target = new TowersOfHanoi();
-        System.out.println("Before moving the towers");
-        System.out.println("Source: " + source);
-        System.out.println("Aux: " + aux);
-        System.out.println("Target: " + target);
-        TowersOfHanoi.towersOfHanoi(8, source, target, aux);
-        System.out.println("After moving the towers");
-        System.out.println("Source: " + source);
-        System.out.println("Aux: " + aux);
-        System.out.println("Target: " + target);
+    public static void main(String[] args) throws IOException {
+        TowersOfHanoi from_tower = new TowersOfHanoi();
+        TowersOfHanoi aux_tower = new TowersOfHanoi();
+        TowersOfHanoi to_tower = new TowersOfHanoi();
+        from_tower.add_slide(3).add_slide(2).add_slide(1);
+        System.out.println("from_tower: " + from_tower);
+        System.out.println("aux_tower: " + aux_tower);
+        System.out.println("to_tower: " + to_tower);
+        TowersOfHanoi.towersOfHanoi(3, from_tower, to_tower, aux_tower);
+        System.out.println("from_tower: " + from_tower);
+        System.out.println("aux_tower: " + aux_tower);
+        System.out.println("to_tower: " + to_tower);
+        File file = new File("tower_of_hanoi_result");
+        if(!file.exists()){
+            boolean result=file.createNewFile();
+            System.out.println(result);
+        }
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(from_tower);
+        objectOutputStream.writeObject(aux_tower);
+        objectOutputStream.writeObject(to_tower);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+
+
+
+
+//          FileOutputStream
 
     }
+
+
 }
+

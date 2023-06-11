@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Stack;
 
-public class TowersOfHanoi {
+public class TowersOfHanoi implements Serializable {
     Stack<Integer> slides = new Stack<>();
 
     /**
